@@ -21,6 +21,14 @@ export class RegisterComponent implements OnInit {
   }
 
   createUser() {
-    this.authService.newUser('enrique', 'info@', '2321432432')
+    if (this.registerForm.invalid){
+      return
+    }
+
+    this.authService.newUser(
+      this.registerForm.get('name')!.value,
+      this.registerForm.get('email')!.value,
+      this.registerForm.get('password')!.value,
+    )
   }
 }

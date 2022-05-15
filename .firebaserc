@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ingresos-app-97598": {
+      "hosting": {
+        "incomes-expenses-app": [
+          "ingresos-app-97598"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ingresos-app-97598"
+  }
+}
