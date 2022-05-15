@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
+  error: string = ""
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -37,6 +38,6 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get('password')!.value
       )
       .then(() => this.router.navigate(["/"]))
-      .catch((err) => console.warn(err));
+      .catch((err) => {console.warn(err); this.error = err.message});
   }
 }

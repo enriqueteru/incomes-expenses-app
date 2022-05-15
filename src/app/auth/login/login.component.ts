@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  error: string = "";
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +38,6 @@ export class LoginComponent implements OnInit {
         console.log(c);
         this.router.navigate(['/']);
       })
-      .catch((e) => console.log(e));
+      .catch((e) =>{ console.log(e), this.error = e.message });
   }
 }
