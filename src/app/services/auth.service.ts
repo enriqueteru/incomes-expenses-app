@@ -5,6 +5,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root',
 })
 export class AuthService {
+  initAuthListener() {
+    this.auth.authState.subscribe((fuser) => console.log(fuser));
+  }
+
   constructor(private auth: AngularFireAuth) {}
 
   newUser(name: string, email: string, password: string) {
@@ -12,11 +16,10 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.auth.signInWithEmailAndPassword(email, password)
-
+    return this.auth.signInWithEmailAndPassword(email, password);
   }
 
-  logout(){
-    return this.auth.signOut()
+  logout() {
+    return this.auth.signOut();
   }
 }

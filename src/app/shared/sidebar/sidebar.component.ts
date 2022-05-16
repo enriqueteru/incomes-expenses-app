@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   logout() {
     this.auth
       .logout()
-      .then((l) => this.router.navigate(["/login"]))
+      .then(() => this.router.navigate(["/login"]))
       .catch((e) => console.warn(e));
   }
 }
