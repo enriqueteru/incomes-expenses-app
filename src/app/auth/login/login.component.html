@@ -18,7 +18,10 @@
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i *ngIf="this.loginForm!.valid" class="fa fa-check-circle"></i>
+                    <i
+                      *ngIf="this.loginForm!.valid"
+                      class="fa fa-check-circle"
+                    ></i>
                   </span>
                 </div>
               </div>
@@ -36,15 +39,31 @@
 
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i *ngIf="this.loginForm!.valid" class="fa fa-check-circle"></i>
+                    <i
+                      *ngIf="this.loginForm!.valid"
+                      class="fa fa-check-circle"
+                    ></i>
                   </span>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <button (click)="login()" class="btn btn-primary submit-btn btn-block">
+              <button
+                *ngIf="!loading"
+                (click)="login()"
+                class="btn btn-primary submit-btn btn-block"
+                [disabled]="loginForm.invalid"
+              >
                 Login
+              </button>
+
+              <button
+                *ngIf="loading"
+                class="btn btn-primary submit-btn btn-block"
+                [disabled]="true"
+              >
+                <i class="fa fa-spin fa-sync"></i>
               </button>
             </div>
 
@@ -57,8 +76,7 @@
                 >Crear una cuenta</a
               >
             </div>
-            <p  style="color: red; text-align: center;"> {{ error }}</p>
-
+            <p style="color: red; text-align: center">{{ error }}</p>
           </form>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { dashboardRoutes } from './dashboard/dashboard.routes';
-import { AuthGuard } from './guard/auth.guard';
+import { AuthGuard } from './auth/guard/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
