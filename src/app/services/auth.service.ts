@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Store } from '@ngrx/store';
 
 import { map } from 'rxjs';
 import { User } from '../core/models/user.model';
+import { unsetUser } from '../core/state/actions/Auth.action';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class AuthService {
     this.auth.authState.subscribe((fuser) => console.log(fuser));
   }
 
-  constructor(private auth: AngularFireAuth, private fs: AngularFirestore) {}
+  constructor(private auth: AngularFireAuth, private fs: AngularFirestore, private store: Store) {}
 
   newUser(name: string, email: string, password: string) {
     return this.auth
@@ -29,6 +31,7 @@ export class AuthService {
   }
 
   logout() {
+    this.store.dispatch(unsetUser())
     return this.auth.signOut();
   }
 

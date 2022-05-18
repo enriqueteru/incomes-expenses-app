@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as ui from 'src/app/core/state/actions/UI.action';
+import * as auth from 'src/app/core/state/actions/Auth.action';
 import { AppState } from 'src/app/core/state/reducers/app.reducer';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.store.select('ui').subscribe(ui => this.loading = ui.isLoading)
+    this.store.select('ui').subscribe((ui) => (this.loading = ui.isLoading));
   }
 
   login() {
@@ -45,6 +46,15 @@ export class LoginComponent implements OnInit {
       )
       .then((c) => {
         this.store.dispatch(ui.stopLoading());
+        this.store.dispatch(
+          auth.setUser({
+            user: {
+              uid: 'fafaef',
+              email: 'info',
+              name: 'enrique',
+            },
+          })
+        );
         this.router.navigate(['/']);
       })
       .catch((e) => {
