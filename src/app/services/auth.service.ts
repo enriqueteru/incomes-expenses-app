@@ -1,28 +1,46 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth} from '@angular/fire/compat/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 
-import { map } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { User } from '../core/models/user.model';
-import { unsetUser } from '../core/state/actions/Auth.action';
+import * as AuthAction from '../core/state/actions/Auth.action';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+userSuscription$?: Subscription;
+
   initAuthListener() {
-    this.auth.authState.subscribe((fuser) => console.log(fuser));
+    this.auth.authState.subscribe((fuser) => {
+      if (!fuser) {
+        this.userSuscription$?.unsubscribe()
+      } else {
+        this.userSuscription$ = this.fs
+          .doc(`${fuser.uid}/user`)
+          .valueChanges()
+          .subscribe((fsuser: any) => {
+            const user: User = User.fromFirebase(fsuser)
+            this.store.dispatch(AuthAction.setUser({user}))
+          });
+      }
+    });
   }
 
-  constructor(private auth: AngularFireAuth, private fs: AngularFirestore, private store: Store) {}
+  constructor(
+    private auth: AngularFireAuth,
+    private fs: AngularFirestore,
+    private store: Store
+  ) {}
 
   newUser(name: string, email: string, password: string) {
     return this.auth
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
         const newUser = new User(user!.uid, name, email);
-        return this.fs.doc(`${user!.uid}/user`).set({...newUser})
+        return this.fs.doc(`${user!.uid}/user`).set({ ...newUser });
       });
   }
 
@@ -31,7 +49,7 @@ export class AuthService {
   }
 
   logout() {
-    this.store.dispatch(unsetUser())
+    this.store.dispatch(AuthAction.unsetUser());
     return this.auth.signOut();
   }
 

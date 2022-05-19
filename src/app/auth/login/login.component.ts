@@ -46,15 +46,6 @@ export class LoginComponent implements OnInit {
       )
       .then((c) => {
         this.store.dispatch(ui.stopLoading());
-        this.store.dispatch(
-          auth.setUser({
-            user: {
-              uid: 'fafaef',
-              email: 'info',
-              name: 'enrique',
-            },
-          })
-        );
         this.router.navigate(['/']);
       })
       .catch((e) => {
