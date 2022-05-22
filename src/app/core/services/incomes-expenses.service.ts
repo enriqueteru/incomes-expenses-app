@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { IncomesExpenses } from '../core/models/incomes-expenses.model';
+import { IncomesExpenses } from '../models/incomes-expenses.model';
 import { map } from 'rxjs';
-import { AppState } from '../core/state/reducers/app.reducer';
+import { AppState } from '../state/reducers/app.reducer';
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth.service';
-import { stopLoading } from '../core/state/actions/UI.action';
+import { stopLoading } from '../state/actions/UI.action';
 
 @Injectable({
   providedIn: 'root',
@@ -23,10 +23,11 @@ export class IncomesExpensesService {
   }
 
   addIncomeExpense(incomeExpense: any, uid: string) {
+    delete incomeExpense.uid
     return this.fs
       .doc(`${uid}/incomes-expenses/`)
       .collection('items')
-      .add({ ...incomeExpense, uid: '' });
+      .add({ ...incomeExpense});
   }
 
   initIncomesExpenses$(uid: string) {

@@ -15,12 +15,15 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let item of incomesExpenses">
+            <tr *ngFor="let item of incomesExpenses | sortList">
               <td>{{ item.description }}</td>
               <td>{{ item.amount }} €</td>
-              <td [class.text-success]="item.type === 'i'"
-                  [class.text-danger]="item.type === 'e'"
-              >{{ item.type }}</td>
+              <td
+                [class.text-success]="item.type === 'income'"
+                [class.text-danger]="item.type === 'expense'"
+              >
+                {{ item.type }}
+              </td>
               <td>{{ item.uid }}</td>
               <td>
                 <button class="btn btn-danger" (click)="remove(item?.uid)">

@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IncomesExpenses } from '../core/models/incomes-expenses.model';
-import { AuthService } from '../services/auth.service';
-import { IncomesExpensesService } from '../services/incomes-expenses.service';
-import { UiService } from '../services/ui.service';
+import { AuthService } from '../core/services/auth.service';
+import { IncomesExpensesService } from '../core/services/incomes-expenses.service';
+import { UiService } from '../core/services/ui.service';
 
 @Component({
   selector: 'app-incomes-expenses',
@@ -13,7 +13,7 @@ import { UiService } from '../services/ui.service';
 })
 export class IncomesExpensesComponent implements OnInit, OnDestroy {
   incomesForm!: FormGroup;
-  type: string = '+';
+  type: string = 'income';
   Loading: boolean = false;
   sus$!: Subscription;
 
