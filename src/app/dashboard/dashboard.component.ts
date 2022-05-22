@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { IncomesExpenses } from '../core/models/incomes-expenses.model';
-import { setItems } from '../core/state/actions/incomesExpenses.actions';
+import { setItems, unsetItems } from '../core/state/actions/incomesExpenses.actions';
 import { AppState } from '../core/state/reducers/app.reducer';
-import { IncomesExpensesService } from '../services/incomes-expenses.service';
+import { IncomesExpensesService } from '../core/services/incomes-expenses.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,15 +25,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .select('auth')
       .subscribe(
         ({user}) =>{
-           return this.ie$ = this._ie
+            this.ie$ = this._ie
             .initIncomesExpenses$(user.uid)
             .subscribe((items: any) => this._s.dispatch(setItems({ items })))}
       );
   }
 
   ngOnDestroy(): void {
-    this.user$?.unsubscribe();
-    this.ie$?.unsubscribe();
 
-  }
+    this.user$?.unsubscribe();
+    this.ie$.unsubscribe()
+    this._s.dispatch(unsetItems())}
+
+
+
 }

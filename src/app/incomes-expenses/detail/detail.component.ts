@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {  Subscription } from 'rxjs';
 import { IncomesExpenses } from 'src/app/core/models/incomes-expenses.model';
-import { IncomesExpensesService } from 'src/app/services/incomes-expenses.service';
+import { IncomesExpensesService } from 'src/app/core/services/incomes-expenses.service';
 
 @Component({
   selector: 'app-detail',

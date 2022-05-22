@@ -33,16 +33,16 @@
             <label>Tipo</label>
             <br />
             <button
-              *ngIf="type === '+'"
-              (click)="type = '-'"
+              *ngIf="type === 'income'"
+              (click)="type = 'expense'"
               type="button"
               class="btn btn-primary btn-block"
             >
               Ingreso
             </button>
             <button
-              *ngIf="type === '-'"
-              (click)="type = '+'"
+              *ngIf="type === 'expense'"
+              (click)="type = 'income'"
               type="button"
               class="btn btn-warning btn-block"
             >
