@@ -1,0 +1,26 @@
+import { state } from '@angular/animations';
+import { createReducer, on } from '@ngrx/store';
+import { IncomesExpenses } from '../../models/incomes-expenses.model';
+import * as actions from '../actions/incomesExpenses.actions';
+
+export interface State {
+  items: IncomesExpenses[];
+}
+
+export const initialState: State = {
+  items: [],
+};
+
+export const _iEReducer = createReducer(
+  initialState,
+  on(actions.setItems, (state, { items }) => ({
+    ...state,
+    items: [...items],
+  })),
+  on(actions.unsetItems, (state) => ({
+    ...state,
+    items: [],
+  }))
+);
+
+export const iEReducer = (state: any, action: any) => _iEReducer(state, action);

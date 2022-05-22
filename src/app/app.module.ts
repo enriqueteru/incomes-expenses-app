@@ -9,9 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
-import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
-import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
+import { GraphicsComponent } from './incomes-expenses/graphics/graphics.component';
+import { DetailComponent } from './incomes-expenses/detail/detail.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
@@ -26,6 +25,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './core/state/reducers/app.reducer';
+import { IncomesExpensesComponent } from './incomes-expenses/incomes-expenses.component';
+
 
 
 @NgModule({
@@ -34,9 +35,9 @@ import { appReducers } from './core/state/reducers/app.reducer';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    IngresoEgresoComponent,
-    EstadisticaComponent,
-    DetalleComponent,
+    IncomesExpensesComponent,
+    GraphicsComponent,
+    DetailComponent,
     FooterComponent,
     NavbarComponent,
     SidebarComponent
