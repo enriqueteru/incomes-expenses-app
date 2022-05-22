@@ -27,28 +27,17 @@ export class AuthService {
   initAuthListener() {
     this.auth.authState.subscribe((fuser) => {
       if (fuser) {
-
         this.userSuscription$ = this.fs
-        .doc(`${fuser.uid}/user`)
-        .valueChanges()
-        .subscribe((fsuser: any) => {
-          const user: User = User.fromFirebase(fsuser);
-          this._user = user;
-          this.store.dispatch(AuthAction.setUser({ user }));
-
-        });
-
+          .doc(`${fuser.uid}/user`)
+          .valueChanges()
+          .subscribe((fsuser: any) => {
+            const user: User = User.fromFirebase(fsuser);
+            this._user = user;
+            this.store.dispatch(AuthAction.setUser({ user }));
+          });
       } else {
-
-
         this._user = null;
         this.userSuscription$?.unsubscribe();
-        this.store.dispatch(AuthAction.unsetUser());
-        this.store.dispatch(AuthAction.unsetUser());
-
-
-
-
       }
     });
   }

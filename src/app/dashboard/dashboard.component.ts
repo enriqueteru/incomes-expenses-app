@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { IncomesExpenses } from '../core/models/incomes-expenses.model';
-import { setItems, unsetItems } from '../core/state/actions/incomesExpenses.actions';
+import { Subscription } from 'rxjs';
+import { setItems } from '../core/state/actions/incomesExpenses.actions';
 import { AppState } from '../core/state/reducers/app.reducer';
 import { IncomesExpensesService } from '../core/services/incomes-expenses.service';
 
@@ -34,8 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 
     this.user$?.unsubscribe();
-    this.ie$.unsubscribe()
-    this._s.dispatch(unsetItems())}
+    this.ie$.unsubscribe()}
 
 
 
