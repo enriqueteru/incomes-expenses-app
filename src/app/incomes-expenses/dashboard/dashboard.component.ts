@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { setItems } from '../core/state/actions/incomesExpenses.actions';
-import { AppState } from '../core/state/reducers/app.reducer';
-import { IncomesExpensesService } from '../core/services/incomes-expenses.service';
+import { setItems } from '../../core/state/actions/incomesExpenses.actions';
+import { AppState } from '../../core/state/reducers/app.reducer';
+import { IncomesExpensesService } from '../../core/services/incomes-expenses.service';
+import { AppStateFeature } from 'src/app/core/state/reducers/incomesExpenses.reducer';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ie$?: Subscription;
   items!: any;
   constructor(
-    private _s: Store<AppState>,
+    private _s: Store<AppStateFeature>,
     private _ie: IncomesExpensesService
   ) {}
 
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 
     this.user$?.unsubscribe();
-    this.ie$.unsubscribe()}
+    this.ie$?.unsubscribe()}
 
 
 

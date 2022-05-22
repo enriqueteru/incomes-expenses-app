@@ -7,6 +7,7 @@ import { AppState } from '../state/reducers/app.reducer';
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth.service';
 import { stopLoading } from '../state/actions/UI.action';
+import { AppStateFeature } from '../state/reducers/incomesExpenses.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ import { stopLoading } from '../state/actions/UI.action';
 export class IncomesExpensesService {
   constructor(
     private fs: AngularFirestore,
-    private _s: Store<AppState>,
+    private _s: Store<AppStateFeature>,
     private _auth: AuthService
   ) {}
 

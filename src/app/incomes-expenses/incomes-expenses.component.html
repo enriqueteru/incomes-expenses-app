@@ -2,35 +2,30 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Agregar Ingreso / Egreso</h4>
-        <p class="card-description">Especifique el monto y el tipo</p>
+        <h4 class="card-title">Add Income / Expense</h4>
 
         <form (ngSubmit)="sendIncomes()" [formGroup]="incomesForm">
           <div class="form-group">
-            <label>Descripción</label>
+            <label>Description</label>
             <input
               type="text"
               class="form-control"
               formControlName="description"
-              placeholder="Descripción"
-              name="descripcion"
+              placeholder="Description"
             />
           </div>
 
           <div class="form-group">
-            <label>Monto</label>
+            <label>Amount</label>
             <input
               type="number"
               class="form-control"
               formControlName="amount"
-              placeholder="Monto"
-              name="monto"
             />
-            <p>Debe de ser un monto positivo</p>
           </div>
 
           <div class="form-group">
-            <label>Tipo</label>
+            <label>Type <small>(click to change)</small></label>
             <br />
             <button
               *ngIf="type === 'income'"
@@ -38,7 +33,7 @@
               type="button"
               class="btn btn-primary btn-block"
             >
-              Ingreso
+              Income
             </button>
             <button
               *ngIf="type === 'expense'"
@@ -46,7 +41,7 @@
               type="button"
               class="btn btn-warning btn-block"
             >
-              Egreso
+              Expense
             </button>
           </div>
 
@@ -57,10 +52,10 @@
             class="btn btn-success mr-2"
           >
             <i class="fa fa-save"></i>
-            Agregar<i *ngIf="Loading" class="fa fa-spin fa-sync"></i>
+            Add<i *ngIf="Loading" class="fa fa-spin fa-sync"></i>
           </button>
 
-          <button type="reset" (click)="reset()" class="btn btn-light">Cancelar</button>
+          <button type="reset" (click)="reset()" class="btn btn-light">Reset</button>
         </form>
       </div>
     </div>

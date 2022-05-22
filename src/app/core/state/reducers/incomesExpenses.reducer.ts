@@ -2,6 +2,7 @@ import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { IncomesExpenses } from '../../models/incomes-expenses.model';
 import * as actions from '../actions/incomesExpenses.actions';
+import { AppState } from './app.reducer';
 
 export interface State {
   items: IncomesExpenses[];
@@ -10,6 +11,11 @@ export interface State {
 export const initialState: State = {
   items: [],
 };
+
+
+export interface AppStateFeature extends AppState {
+  ie: State
+}
 
 export const _iEReducer = createReducer(
   initialState,
