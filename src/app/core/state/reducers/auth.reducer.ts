@@ -9,7 +9,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  user: {} as User,
+  user: null,
 };
 
 const _autReducer = createReducer(
@@ -20,7 +20,7 @@ const _autReducer = createReducer(
   })),
   on(actions.unsetUser, (state) => ({
     ...state,
-    user: {} as User
+    user: null
   }))
 );
 
